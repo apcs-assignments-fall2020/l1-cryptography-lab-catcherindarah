@@ -2,8 +2,14 @@ import java.util.Scanner;
 
 public class Caesar {
     public static String encryptCaesar(String message) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String encmessage = "";
+        for (int i = 0, i < message.length(), i++) {
+            char ch = (char)((int)message.charAt(i)+3) % 26;
+            encmessage.append(ch);
+
+        }
+        return encmessage;
+        
     }
 
     public static String decryptCaesar(String message) {
@@ -12,8 +18,15 @@ public class Caesar {
     }
 
     public static String encryptCaesarKey(String message, int key) {
+        StringBuffer message= new StringBuffer(); 
+  
+        for (int i=0; i<message.length(); i++) { 
+            char ch = (char)(((int)message.charAt(i) + key) % 26;);
+            message.append(ch); 
+            } 
         return message;
-        // REPLACE THIS WITH YOUR CODE
+    }
+        
     }
 
     public static String decryptCaesarKey(String message, int key) {
