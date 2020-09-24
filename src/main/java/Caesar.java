@@ -13,19 +13,65 @@ public class Caesar {
     }
 
     public static String decryptCaesar(String message) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String a = message.toUpperCase();
+        String b = "";
+        String c = "";
+        for (int i = 0; i < message.length(); i++;){
+            char ray = a.charAt(i);
+            if (ray >= 68 && ray <= 90) {
+                ray = (char)(ray-3);
+                b = b + ray;
+            }
+            if (ray == 67) {
+                ray = char(90);
+                b = b + ray;
+
+            }
+            if (ray == 66) {
+                ray = (char)(89);
+                b = b + ray;
+            }
+            if (ray == 65) {
+                ray = (char)(88);
+                b = b + ray;
+            }
+            c = b.toLowerCase();
+            return (c);
+
+        }
     }
 
     public static String encryptCaesarKey(String message, int key) {
         StringBuffer message= new StringBuffer(); 
   
-        for (int i=0; i<message.length(); i++) { 
-            char ch = (char)(((int)message.charAt(i) + key) % 26;);
-            message.append(ch); 
+        for (int i=0; i<text.length(); i++) 
+        { 
+            if (Character.isUpperCase(text.charAt(i))) 
+            { 
+                char ch = (char)(((int)text.charAt(i) + 
+                                  s - 65) % 26 + 65); 
+                message.append(ch); 
             } 
-        return message;
-    }
+            else
+            { 
+                char ch = (char)(((int)text.charAt(i) + 
+                                  s - 97) % 26 + 97); 
+                message.append(ch); 
+            } 
+        } 
+        return message; 
+    } 
+  
+    // Driver code 
+    public static void main(String[] args) 
+    { 
+        String text = "ATTACKATONCE"; 
+        int s = 4; 
+        System.out.println("Text  : " + text); 
+        System.out.println("Shift : " + s); 
+        System.out.println("Cipher: " + encrypt(text, s)); 
+    } 
+} 
         
     }
 
