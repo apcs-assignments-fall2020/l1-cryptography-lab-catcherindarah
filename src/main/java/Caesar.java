@@ -1,11 +1,23 @@
-import java.util.Scanner;
+import java.util.Scanner; //help from Ryan 
 
 public class Caesar {
     public static String encryptCaesar(String message) {
         String encmessage = "";
-        for (int i = 0, i < message.length(), i++) {
-            char ch = (char)((int)message.charAt(i)+3) % 26;
-            encmessage.append(ch);
+        int s = 3;
+        int zero = 0;
+        for (int i = 0; i < message.length(); i++) {
+            char a = message.charAt(i);
+            if(65 <= a && a <= 90){
+                zero = (a + s - 65)%26;
+                encmessage += (char)(zero + 65);
+            }
+            else if ( 97 <= a && a <= 122){
+                zero = (a + s - 97)%26;
+                encmessage += (char)(zero + 97);
+            }
+            else {
+                encmessage += a;
+            }
 
         }
         return encmessage;
@@ -13,71 +25,78 @@ public class Caesar {
     }
 
     public static String decryptCaesar(String message) {
-        String a = message.toUpperCase();
-        String b = "";
-        String c = "";
-        for (int i = 0; i < message.length(); i++;){
-            char ray = a.charAt(i);
-            if (ray >= 68 && ray <= 90) {
-                ray = (char)(ray-3);
-                b = b + ray;
-            }
-            if (ray == 67) {
-                ray = char(90);
-                b = b + ray;
+        int s = 3;
+        int zero = 0;
+        String decmessage = "";
 
-            }
-            if (ray == 66) {
-                ray = (char)(89);
-                b = b + ray;
-            }
-            if (ray == 65) {
-                ray = (char)(88);
-                b = b + ray;
-            }
-            c = b.toLowerCase();
-            return (c);
+        for (int i = 0; i < message.length(); i++){
+            char a = message.charAt(i);
+            if ((65 <= a && a <= 90) || (97 <= a && a <= 122)){
+                if ((65 <= a && a <= 67) || (97 <= a && a <= 99)){
+                    decmessage += (char)(a + 23);
+              }
+                else {
+                    decmessage += (char)(a - 3);
+              }
+          }
+            else {
+                decmessage += a;
+          }
 
         }
+        return decmessage;
     }
 
     public static String encryptCaesarKey(String message, int key) {
-        StringBuffer message= new StringBuffer(); 
-  
-        for (int i=0; i<text.length(); i++) 
-        { 
-            if (Character.isUpperCase(text.charAt(i))) 
-            { 
-                char ch = (char)(((int)text.charAt(i) + 
-                                  s - 65) % 26 + 65); 
-                message.append(ch); 
-            } 
-            else
-            { 
-                char ch = (char)(((int)text.charAt(i) + 
-                                  s - 97) % 26 + 97); 
-                message.append(ch); 
-            } 
-        } 
-        return message; 
+        String decmessage = "";
+        key = key % 26;
+
+        for (int i = 0; i < message.length(); i++){
+              char a = message.charAt(i);
+            if ((65 <= a && a <= 90) || (97 <= a && a <= 122)){
+                if ((a >= (90-(key-1)) && a <= 90) || (a >= 122-(key-1) && a <= 122)){
+                decmessage += (char)(a-(26-key));
+              }
+                else {
+                    decmessage += (char)(a + key);
+              }
+          }
+            else {
+                decmessage += a;
+          }
+
+        }
+        return decmessage;
+         
     } 
-  
-    // Driver code 
-    public static void main(String[] args) 
-    { 
-        String text = "ATTACKATONCE"; 
-        int s = 4; 
-        System.out.println("Text  : " + text); 
-        System.out.println("Shift : " + s); 
-        System.out.println("Cipher: " + encrypt(text, s)); 
-    } 
-} 
+     
         
-    }
 
     public static String decryptCaesarKey(String message, int key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        int s = key;
+        int zero = 0;
+        String ray ="";
+        for (int i = 0; i < message.length(); i++){
+            char a = message.charAt(i);
+            if(65 <= a && a <= 90){
+                zero= (a - s - 65)%26;
+                if(zero < 0){
+                    zero = 26 + zero;
+                }
+                ray += (char)(zero + 65);
+            }
+            else if (97 <= a && a <= 122){
+                zero = (a - s - 97)%26;
+                if(zero < 0){
+                    zero = 26 + zero;
+                }
+                ray += (char)(zero +97);
+            }
+            else {
+                ray += a;
+            }
+        }
+        return ray;
     }
 
 
